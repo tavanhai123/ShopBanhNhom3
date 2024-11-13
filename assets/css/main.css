@@ -782,12 +782,14 @@ header {
 
 /* Page Nav  */
 
-.page-nav,.page-nav-list {
+.page-nav,.page-nav-list, #pagination {
+    width: 1110px;
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     align-items: center;
     column-gap: 10px;
     margin-top: 10px;
+    width: 100%;
 }
 
 .page-nav-item a {
@@ -810,7 +812,7 @@ header {
 
 /*Modal Box*/
 .modal {
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, .4);
     position: fixed;
     top: 0;
     right: 0;
@@ -1023,28 +1025,13 @@ h2.product-title {
 .modal-footer {
     padding: 12px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     border-top: 1px solid #eee;
     background-color: var(--white);
     position: sticky;
     bottom: 0;
 }
 
-.price-total {
-    display: flex;
-    flex-direction: column;
-}
-
-.price-total .thanhtien {
-    color: #808080;
-    font-size: 13px;
-}
-
-.price-total .price {
-    color: var(--red);
-    font-weight: 600;
-    font-size: 16px;
-}
 
 .modal-footer-control button {
     background-color: var(--red);
@@ -1179,16 +1166,6 @@ label a {
     font-size: 16px;
 }
 
-.back-home {
-    margin-top: 20px; /* Khoảng cách giữa nút quay lại và form */
-    text-align: center; /* Đặt nội dung ở giữa */
-}
-.back-home a {
-    text-decoration: none; /* Không gạch chân */
-    color: var(--red);/* Màu chữ là đỏ */
-   
-    font-size: 16px; /* Kích thước chữ */
-}
 
 /* Test login sign up */
 .lg-container div {
@@ -1252,6 +1229,13 @@ label a {
     transform: translateX(100%);
     visibility: hidden;
     transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+#cart-form{
+    overflow: hidden;
+    width: 400px;
+    height: calc(100% - 30px);
+    display: flex;
+    flex-direction: column;
 }
 
 .cart-header {
@@ -1328,8 +1312,8 @@ label a {
 }
 
 .cart-item-title {
-    font-size: 15px;
-    width: 70%;
+    font-size: 17px;
+    width: 25%;
 }
 
 .cart-item-price {
@@ -1337,7 +1321,7 @@ label a {
     font-weight: 500;
     width: 30%;
     text-align: right;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .product-note {
@@ -1381,6 +1365,10 @@ label a {
     bottom: 0;
     width: 100%;
 }
+.cart-footer-payment a {
+    color: inherit;
+    text-decoration: none;
+}
 
 .cart-total-price {
 
@@ -1419,15 +1407,23 @@ button.them-mon {
     border: 2px solid;
 }
 
-button.thanh-toan {
-    background-color: var(--red);
-    color: var(--white);
-}
-
 button.thanh-toan.disabled {
     cursor: default;
     opacity: 0.5;
     pointer-events: none;
+}
+
+a.thanh-toan {
+    text-align: center;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50%;
+    cursor: pointer;
+    background-color: var(--red);
+    color: var(--white);
 }
 
 #trangchu.hide {

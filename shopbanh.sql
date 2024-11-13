@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 12, 2024 lúc 06:39 PM
+-- Thời gian đã tạo: Th10 13, 2024 lúc 04:39 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -43,7 +43,8 @@ INSERT INTO `category` (`CateID`, `CateName`) VALUES
 (4, 'Layercake'),
 (5, 'Mochicake'),
 (6, 'Tiramisu'),
-(7, 'Specialcake');
+(7, 'Specialcake'),
+(8, 'Whoopie');
 
 -- --------------------------------------------------------
 
@@ -64,6 +65,14 @@ CREATE TABLE `order` (
   `Status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `order`
+--
+
+INSERT INTO `order` (`OrderID`, `UserID`, `NameOder`, `PhoneOder`, `AddressOder`, `Note`, `Total`, `CreatTime`, `LastUpdate`, `Status`) VALUES
+(32, 9, 'Tạ Văn Hải', '0328888888', 'ha noi', '', 250000, 1731463745, 2147483647, '0'),
+(33, 8, 'Tạ Văn Hải', '0328888888', 'ha noi', '', 70000, 1731468338, 1731468338, '1');
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +89,15 @@ CREATE TABLE `orderdetails` (
   `LastUpdate` int(11) NOT NULL,
   `NoteCart` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`DetailsID`, `OrderID`, `ProductID`, `Quantity`, `PriceP`, `CreatTime`, `LastUpdate`, `NoteCart`) VALUES
+(4, 32, 40, 1, 40000.00, 1731463745, 1731463745, 'Không có ghi chú'),
+(5, 32, 46, 3, 60000.00, 1731463745, 1731463745, 'Không có ghi chú'),
+(6, 33, 40, 1, 40000.00, 1731468338, 1731468338, 'Không có ghi chú');
 
 -- --------------------------------------------------------
 
@@ -101,9 +119,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ProductID`, `ProductName`, `Description`, `CateID`, `ProductImage`, `Price`) VALUES
-(38, 'Cupcake Dâu Tươi', 'Cupcake mềm mịn với cốt bánh thơm béo và lớp kem phủ hương vị dâu tươi tự nhiên. Phía trên trang trí thêm trái dâu tươi thái lát, mang đến hương vị ngọt ngào và sự thanh mát trong từng miếng cắn. Phù hợp với những ai yêu thích sự nhẹ nhàng, tươi mới.', 1, './assets/img/products/Cupcake/1.jpg', 35000.00),
 (39, 'Cupcake Chocolate', 'Cupcake vị chocolate đậm đà, hấp dẫn từ lớp cốt bánh mềm xốp đến lớp kem chocolate mịn màng. Hương vị chocolate thuần khiết giúp bạn tận hưởng vị ngọt béo của kem hòa quyện cùng cốt bánh, thích hợp cho các tín đồ yêu thích chocolate.', 1, './assets/img/products/Cupcake/2.jpg', 38000.00),
-(40, 'Cupcake Matcha', 'Cupcake xanh mát được làm từ bột matcha Nhật Bản nguyên chất, tạo nên vị ngọt thanh và chút đắng nhẹ đặc trưng. Lớp kem matcha béo ngậy được trang trí phía trên giúp tăng hương vị và độ hấp dẫn, mang đến trải nghiệm mới mẻ.', 1, './assets/img/products/Cupcake/3.jpg', 36000.00),
+(40, 'Cupcake Matcha', 'Cupcake xanh mát được làm từ bột matcha Nhật Bản nguyên chất, tạo nên vị ngọt thanh và chút đắng nhẹ đặc trưng. Lớp kem matcha béo ngậy được trang trí phía trên giúp tăng hương vị và độ hấp dẫn, mang đến trải nghiệm mới mẻ.', 1, './assets/img/products/Cupcake/3.jpg', 40000.00),
 (41, 'Cupcake Hoa Quả', 'Cupcake mềm xốp với lớp kem mát lạnh và trái cây tươi mọng trên mặt. Bánh kết hợp hương vị tự nhiên từ dâu tây, kiwi, và cam, đem lại cảm giác ngọt thanh và tươi mới, rất thích hợp cho những ai yêu thích hương vị trái cây tự nhiên.', 1, './assets/img/products/Cupcake/4.jpg', 37000.00),
 (42, 'Bentocake Tình Yêu', 'Bentocake được trang trí tỉ mỉ với hình trái tim cùng những lời chúc ý nghĩa, là món quà tuyệt vời cho những dịp kỷ niệm hoặc để bày tỏ tình cảm. Bánh mềm mịn với lớp kem ngọt ngào, kết hợp màu sắc trang nhã, dễ thương.', 2, './assets/img/products/Bentocake/1.jpg', 50000.00),
 (43, 'Bentocake Sô Cô La', 'Bentocake phủ lớp chocolate mịn màng và trang trí tinh tế, tạo nên hương vị đậm đà cho những ai yêu thích chocolate. Bánh có kích thước nhỏ gọn nhưng đầy đặn, thích hợp để thưởng thức hoặc tặng người thân.', 2, './assets/img/products/Bentocake/2.jpg', 52000.00),
@@ -148,6 +165,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`UserID`, `Fullname`, `Username`, `Password`, `Created_time`, `UserRole`, `Phone`, `Email`) VALUES
+(8, 'Văn Hải 2', 'vanhai2', '$2y$10$mhVHHWh694IIsU8DvLg/E.VZW0Qb5I8PaaLRo1dRlNNPrFixbw3VG', '2024-11-12 18:44:03', '1', 2147483647, 'vinhlt@ltsgroup.tech'),
+(9, 'Văn Hải', 'vanhai', '$2y$10$NfVK5Fvi0Bl6D/M11tMSoOJl7yOML0vvSR088vE49hyr.L703GwTy', '2024-11-12 18:46:30', '2', 357256358, 'haivansteam@gmail.com');
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -170,7 +195,7 @@ ALTER TABLE `order`
 ALTER TABLE `orderdetails`
   ADD PRIMARY KEY (`DetailsID`),
   ADD KEY `OrderID` (`OrderID`),
-  ADD KEY `ProductID` (`ProductID`);
+  ADD KEY `orderdetails_ibfk_2` (`ProductID`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -199,13 +224,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT cho bảng `order`
 --
 ALTER TABLE `order`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `DetailsID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `DetailsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -217,7 +242,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -234,7 +259,7 @@ ALTER TABLE `order`
 --
 ALTER TABLE `orderdetails`
   ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `order` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`);
 
 --
 -- Các ràng buộc cho bảng `product`
